@@ -1,0 +1,59 @@
+@startuml
+class Client {
+  +login()
+  +submit_task_config()
+  +view_task_status()
+  +monitor_progress()
+}
+
+class Server {
+  +start()
+  +process_request()
+  +parse_task_config()
+  +manage_tasks()
+}
+
+class TaskManager {
+  +create_task_flow()
+  +update_task_status()
+  +schedule_tasks()
+}
+
+class TaskParser {
+  +parse_json_config()
+  +generate_task_flow()
+}
+
+class TaskFlow {
+  -tasks: List<Task>
+  -dependencies: Dict<Task, List<Task>>
+  +build_flow_graph()
+}
+
+class Task {
+  -task_id: int
+  -status: str
+  -dependencies: List<Task>
+  +execute()
+}
+
+class UserManager {
+  +add_user()
+  +manage_permissions()
+  +authenticate_user()
+}
+
+class PersistenceManager {
+  +save_state()
+  +load_state()
+}
+
+Client --> Server : sends requests to
+Server --> TaskManager : delegates task management
+Server --> UserManager : manages users
+Server --> PersistenceManager : persists data through
+TaskManager --> TaskFlow : manages
+TaskManager --> TaskParser : uses for parsing
+TaskFlow --> Task : contains
+TaskParser --> TaskFlow : generates
+@enduml

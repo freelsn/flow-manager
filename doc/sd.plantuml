@@ -1,0 +1,24 @@
+@startuml
+actor Admin as "管理员"
+actor User as "普通用户"
+
+usecase StartServer as "启动Server"
+usecase ViewAllTasks as "查看所有任务状态"
+usecase ManageUsers as "管理用户权限"
+usecase Login as "登录系统"
+usecase SubmitTaskConfig as "提交任务配置文件"
+usecase ViewOwnTasks as "查看任务状态"
+usecase MonitorProgress as "监控任务进度"
+
+Admin --> StartServer
+Admin --> ViewAllTasks
+Admin --> ManageUsers
+Admin --> SubmitTaskConfig
+Admin --> ViewOwnTasks
+Admin --> MonitorProgress
+
+User --> Login
+User --> SubmitTaskConfig
+User --> ViewOwnTasks
+User --> MonitorProgress
+@enduml
